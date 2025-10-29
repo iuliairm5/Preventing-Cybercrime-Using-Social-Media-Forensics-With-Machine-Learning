@@ -1,0 +1,45 @@
+***URLS:
+
+logreg = LogisticRegression()
+logreg = SVC()
+logreg = BernoulliNB()
+logreg = MultinomialNB()
+logreg = RandomForestClassifier()
+
+
+***Tweets:
+
+logreg = DecisionTreeClassifier()
+logreg = LogisticRegression()
+
+param_grid = {'alpha': [0.1, 1, 10, 100]}
+nb = MultinomialNB()
+logreg = GridSearchCV(nb, param_grid, cv=5)
+
+logreg = RandomForestClassifier(n_estimators=100, random_state=42)
+
+logreg = SVC(kernel='linear', C=1, random_state=42)
+
+logreg = BernoulliNB()
+logreg.set_params(alpha=1.0, binarize=0.0, fit_prior=True, class_prior=None)
+
+
+***MEMES:
+
+
+knc = KNeighborsClassifier(n_neighbors=90, weights="distance", metric="minkowski", p=1)
+knc = RandomForestClassifier(n_estimators=100, criterion='gini', max_depth=None, random_state=42)
+knc = ExtraTreesClassifier(n_estimators=300, criterion='gini', max_depth=25, min_samples_split=2, min_samples_leaf=1, max_features='sqrt', bootstrap=False)
+knc = SVC(kernel='linear', random_state=42)
+
+dtc = DecisionTreeClassifier(random_state=42)
+params = {'max_depth': [5, 10, 15],
+          'min_samples_split': [2, 5, 10],
+          'criterion': ['gini', 'entropy']}
+knc = GridSearchCV(dtc, params, cv=5, scoring='accuracy')
+
+
+
+
+
+
