@@ -1,0 +1,175 @@
+﻿@using Newtonsoft.Json.Linq
+
+@model DisertatieIRIMIA.Models.MonitorizedUser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+     <style>
+        body {
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border: 1px solid #ced4da;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ced4da;
+        }
+
+        img {
+            max-width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-back {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 18px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+<body>
+    <form asp-action="ViewAccountDetails">
+        <h1>Account's public data</h1>
+
+        @if (!string.IsNullOrEmpty(Model.AccountDetails))
+        {
+            var accountDetails = JObject.Parse(Model.AccountDetails);
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <tr>
+                        <td>Created At</td>
+                        <td>@accountDetails["created_at"]</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>@accountDetails["description"]</td>
+                    </tr>
+                    <tr>
+                        <td>Followers Count</td>
+                        <td>@accountDetails["followers_count"]</td>
+                    </tr>
+                    <tr>
+                        <td>Friends Count</td>
+                        <td>@accountDetails["friends_count"]</td>
+                    </tr>
+                   
+                    <tr>
+                        <td>Location</td>
+                        <td>@accountDetails["location"]</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@accountDetails["name"]</td>
+                    </tr>
+                    <tr>
+                        <td>Profile Image</td>
+                        <td><img src="@accountDetails["profile_image_url"]" alt="Profile Image" style="width: 200px; height: 200px;" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Tweets Count</td>
+                        <td>@accountDetails["tweets_count"]</td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>@accountDetails["username"]</td>
+                    </tr>
+                    <tr>
+                        <td>Verified Account</td>
+                        <td>@accountDetails["verified_account"]</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+
+        <a asp-action="Index" class="btn btn-secondary btn-back">Back to My Users</a>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+@*
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <form asp-action="ViewAccountDetails">
+    <p>
+        <h1>Account's public data</h1>
+        
+    </p>
+   
+    @if (!string.IsNullOrEmpty(Model.AccountDetails))
+        {
+            string[] details = Model.AccountDetails.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string detail in details)
+            {
+                <p>@detail</p>
+            }
+        }
+
+     
+    <a asp-action="Index" class="btn btn-secondary">Back to My Monitorized Users</a>
+    </form>
+</body>
+</html>
+-->
+*@
+

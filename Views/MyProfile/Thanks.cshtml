@@ -1,0 +1,98 @@
+﻿@model DisertatieIRIMIA.Models.URLs
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Prediction</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        body {
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            text-align: center; /* Added to center the text horizontally */
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .prediction-text {
+            font-size: 80px;
+            margin-bottom: 50px;
+            color: black;
+        }
+
+        .prediction-value {
+            color: red; /* Set the text color to red */
+            font-style: italic; /* Apply italic style */
+            transform: rotate(-3deg); /* Apply inclination */
+            display: inline-block; /* Added to keep the value inline with the surrounding text */
+        }
+
+        .back-button {
+            margin-top: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+   
+        <div class="prediction-text">
+            Prediction is: <span class="prediction-value">
+                @(ViewBag.response0 ?? ViewBag.response1 ?? ViewBag.response2)
+            </span>
+        </div>
+    
+        <a asp-action="Index" class="btn btn-secondary back-button">Back to My Predictions</a>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+@*
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+<p>
+        <h1>Thank you !</h1>
+        
+    </p>
+   
+    <p>Prediction is: @(ViewBag.response0 ?? ViewBag.response1 ?? ViewBag.response2)</p>
+    <a asp-action="Index" class="btn btn-secondary">Back to My Profile</a>
+</body>
+</html>
+*@

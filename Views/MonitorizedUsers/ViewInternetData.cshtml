@@ -1,0 +1,86 @@
+﻿@model DisertatieIRIMIA.Models.MonitorizedUser
+
+@{
+    @*ViewBag.Title = "MonitorizedUsers";
+    Layout = "~/Views/Shared/_MonitorizedUsersLayout.cshtml";*@
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Websites</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #FAFAD2;
+            border: 3px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: black;
+            font-size: 24px;
+        }
+
+        .form-group input[type="text"] {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            font-size: 20px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form asp-action="ViewInternetData" method="post">
+            <div class="form-group">
+                <label asp-for="Username">Searching Internet data for:</label>
+                <input asp-for="Username" value="@Model.Username" readonly />
+            </div>
+            <input type="hidden" name="MonitorizationID" value="@Model.MonitorizationID" />
+           <button type="submit" style="background-color: palevioletred; color: black; padding: 10px 20px; border: 3px solid #ccc; border-radius: 5px; cursor: pointer; font-size: 20px;">See websites!</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+@*
+<body>
+    <form asp-action="ViewInternetData" method="post">
+        <p>
+            <label asp-for="Username">Searching Internet data for :</label>
+            <input asp-for="Username" value="@Model.Username" readonly />
+        </p>      
+       <input type="hidden" name="MonitorizationID" value="@Model.MonitorizationID" />
+        <button type="submit">See websites !</button>
+    </form>
+</body>
+</html>
+*@

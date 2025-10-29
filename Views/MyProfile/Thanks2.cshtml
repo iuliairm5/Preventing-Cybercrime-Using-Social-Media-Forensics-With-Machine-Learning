@@ -1,0 +1,135 @@
+﻿@using System.Globalization
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Keep the background image fixed */
+        }
+        .back-button {
+            margin-top: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        table {
+            font-size: 24px; /* Increased font size for the table */
+        }
+        
+    </style>
+</head>
+<body>
+<p>
+        <!--<h1>Thank you !</h1>-->
+        
+    </p>
+   
+   <!-- <p>Account details: @ViewBag.response1 </p>-->
+  
+   @if (ViewBag.response1 != null)
+   { <!--
+        <pre>
+        <h2>Account details: </h2>
+    
+
+        @{var response = ViewBag.response1;}
+
+        <p>Name: @response.name</p> 
+        <p>Username: @response.username</p>
+        <p>Description: @response.description</p>
+        <p>Followers: @response.followers_count </p>
+        <p>Friends: @response.friends_count</p>
+        <p>Tweets Count: @response.tweets_count  </p>
+        <p>Verified Account: @response.verified_account</p>
+        <p>UTC Offset: @response.UTC_offset</p>
+        <p>Created At: @response.created_at</p>
+        <p>Language Used: @response.language_used</p>
+        <p>Profile Image URL: @response.profile_image_url</p>
+        <p>Time Zone: @response.time_zone</p>
+        <p>Location: @response.location</p>
+
+        </pre>
+        -->
+        <h2>Account details:</h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Name:</th>
+                    <td>@ViewBag.response1.name</td>
+                </tr>
+                <tr>
+                    <th>Username:</th>
+                    <td>@ViewBag.response1.username</td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td>@ViewBag.response1.description</td>
+                </tr>
+                <tr>
+                    <th>Followers:</th>
+                    <td>@ViewBag.response1.followers_count</td>
+                </tr>
+                <tr>
+                    <th>Friends:</th>
+                    <td>@ViewBag.response1.friends_count</td>
+                </tr>
+                <tr>
+                    <th>Tweets Count:</th>
+                    <td>@ViewBag.response1.tweets_count</td>
+                </tr>
+                <tr>
+                    <th>Verified Account:</th>
+                    <td>@ViewBag.response1.verified_account</td>
+                </tr>
+                
+                <tr>
+                    <th>Created At:</th>
+                    <td>@ViewBag.response1.created_at</td>
+                </tr>
+                
+                <tr>
+                    <th>Profile Image:</th>
+                    <td>
+                        <img src="@ViewBag.response1.profile_image_url" alt="Profile Image" class="profile-image" style="width: 200px; height: 200px;">
+                    </td>
+                </tr>
+               
+                <tr>
+                    <th>Location:</th>
+                    <td>@ViewBag.response1.location</td>
+                </tr>
+            </tbody>
+        </table>
+   }
+  
+    @if (ViewBag.response2 != null)
+    {
+        <div style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;background-color: #f9f9f9; padding: 10px;">
+        <h2 style="font-size: 30px;"> Account's latest tweets (including replies & retweets) with only text prediction:  </h2>
+        <br>
+        @foreach (var tweet in ViewBag.response2)
+        {
+            
+           <p style="font-size: 20px;"><strong>Tweet:</strong> @tweet.text <strong>| Prediction:</strong> @tweet.prediction</p>
+        }
+         </div>
+    }
+
+    <a asp-action="Index" class="btn btn-secondary back-button">Back to My Predictions</a>
+</body>
+</html>

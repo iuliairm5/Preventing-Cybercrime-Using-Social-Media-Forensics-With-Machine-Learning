@@ -1,0 +1,99 @@
+﻿@model DisertatieIRIMIA.Models.TWEETs
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <title>PredictTweet</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #FAFAD2;
+            border: 3px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #00BFFF;
+            color: #000;
+            padding: 10px 20px;
+            border: 3px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form asp-action="PredictTweet" method="post">
+            <div class="form-group">
+                <label asp-for="NamePerson">Enter social media name:</label>
+                <input asp-for="NamePerson" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Text">Enter comment/text/tweet:</label>
+                <input asp-for="Text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Predict!" class="btn btn-custom" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+@*
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <title>PredictTweet</title>
+</head>
+<body>
+    <form asp-action="PredictTweet" method="post">
+        <p>
+            <label asp-for="NamePerson">Enter social media name:</label>
+            <input asp-for="NamePerson" />
+        </p>
+        <p>
+            <label asp-for="Text">Enter comment/text/tweet:</label>
+            <input asp-for="Text" />
+        </p>
+       
+        <button type="submit">Predict !</button>
+    </form>
+</body>
+</html>
+*@

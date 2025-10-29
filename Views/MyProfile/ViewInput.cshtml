@@ -1,0 +1,120 @@
+﻿
+@model DisertatieIRIMIA.Models.PREDICTION
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewInput</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        body {
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            text-align: center; /* Added to center the text horizontally */
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .prediction-text {
+            font-size: 80px;
+            margin-bottom: 50px;
+            color: black;
+        }
+
+        .prediction-value {
+            color: red; /* Set the text color to red */
+            font-style: italic; /* Apply italic style */
+            transform: rotate(-3deg); /* Apply inclination */
+            display: inline-block; /* Added to keep the value inline with the surrounding text */
+        }
+
+        .back-button {
+            margin-top: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="ViewInput">
+    <div class="container">
+        
+        <div class="prediction-text">
+        <p>The input for this prediction was: <span class="prediction-value">@Model.Input </span></p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ViewBag.ImageBase64)) {
+            <img src="data:image/png;base64,@ViewBag.ImageBase64" />
+        }
+
+        <a asp-action="Index" class="btn btn-secondary back-button">Back to My Predictions</a>
+    </div>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+@*
+
+@model DisertatieIRIMIA.Models.PREDICTION
+
+@{
+    ViewBag.Title = "ViewInput";
+    Layout = "_MyProfileLayout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <form asp-action="ViewInput">
+    <p>
+        <h1>ANALYZING INPUT</h1>
+        
+    </p>
+   
+    <p>The input for this prediction was: @Model.Input </p>
+
+     @if (!string.IsNullOrEmpty(ViewBag.ImageBase64)) {
+        <img src="data:image/png;base64,@ViewBag.ImageBase64" />
+        }
+
+    <a asp-action="Index" class="btn btn-secondary">Back to My Profile</a>
+    </form>
+</body>
+</html>
+
+*@

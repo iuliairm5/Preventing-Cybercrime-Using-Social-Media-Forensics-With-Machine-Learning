@@ -1,0 +1,60 @@
+﻿@using System.Globalization
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+<p>
+        <h1>Thank you</h1>
+        
+    </p>
+   
+   <!-- <p>Account details: @ViewBag.response1 </p>-->
+  
+   @if (ViewBag.response1 != null)
+   {
+        <pre>
+        <h2>Account details: </h2>
+    
+
+        @{var response = ViewBag.response1;}
+
+        <p>Name: @response.name</p> 
+        <p>Username: @response.username</p>
+        <p>Description: @response.description</p>
+        <p>Followers: @response.followers_count </p>
+        <p>Friends: @response.friends_count</p>
+        <p>Tweets Count: @response.tweets_count  </p>
+        <p>Verified Account: @response.verified_account</p>
+        <p>UTC Offset: @response.UTC_offset</p>
+        <p>Created At: @response.created_at</p>
+        <p>Language Used: @response.language_used</p>
+        <p>Profile Image URL: @response.profile_image_url</p>
+        <p>Time Zone: @response.time_zone</p>
+        <p>Location: @response.location</p>
+
+        </pre>
+   }
+  
+    @if (ViewBag.response2 != null)
+    {
+        <pre>
+        <h2> Account's latest tweets with prediction:  </h2>
+     
+        @foreach (var tweet in ViewBag.response2)
+        {
+            
+           <p>Text: @tweet.text | Prediction: @tweet.prediction</p>
+        }
+        </pre>
+    }
+
+    <a asp-action="Index" class="btn btn-secondary">Back to My Profile</a>
+</body>
+</html>

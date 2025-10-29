@@ -1,0 +1,121 @@
+﻿@using Newtonsoft.Json.Linq
+@using Newtonsoft.Json
+@using System.Collections.Generic
+
+@model DisertatieIRIMIA.Models.MonitorizedUser
+
+@*
+@{
+    ViewBag.Title = "MonitorizedUsers";
+    Layout = "~/Views/Shared/_MonitorizedUsersLayout.cshtml";
+}
+*@
+@{
+    Layout = null;
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LatestTweets</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        .smaller-image {
+            width: 200px; /* Adjust the width as needed */
+        }
+        body {
+           
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Keep the background image fixed */
+        }
+        .back-button {
+            margin-top: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Account's Latest Tweets</h1>
+ @if (!string.IsNullOrEmpty(Model.AccountLatestTweets))
+{
+    var tweets = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(Model.AccountLatestTweets);
+
+    @foreach (var tweet in tweets)
+    {
+        <div class="card my-3">
+            <div class="card-body">
+                <p class="card-text"><strong>Tweet:</strong> @tweet["tweet"]</p>
+                <p class="card-text"><strong>Prediction of the tweet:</strong> @tweet["prediction_tweet"]</p>
+
+                @if (tweet.ContainsKey("image/meme") && tweet["image/meme"] != null)
+                {
+                    var predictionLabel = (string)tweet["prediction_label"];
+                    var imageData = (string)tweet["image/meme"];
+                   <p class="card-text"><strong>Image Prediction:</strong> @predictionLabel</p>
+                    <img src="data:image/jpeg;base64,@imageData" class="img-fluid smaller-image" alt="Image">
+                }
+            </div>
+        </div>
+    }
+}
+
+
+        
+        <a asp-action="Index" class="btn btn-secondary ">Back to My Users</a>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+@*
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <form asp-action="ViewAccountLatestTweets">
+    <p>
+        <h1>Account's Latest Tweets</h1>
+        
+    </p>
+   
+    @if (!string.IsNullOrEmpty(Model.AccountLatestTweets))
+        {
+            string[] details = Model.AccountLatestTweets.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string detail in details)
+            {
+                <p>@detail</p>
+            }
+        }
+
+     
+    <a asp-action="Index" class="btn btn-secondary">Back to My Monitorized Users</a>
+    </form>
+</body>
+</html>
+
+-->
+*@

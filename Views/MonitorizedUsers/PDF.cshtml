@@ -1,0 +1,209 @@
+﻿@model DisertatieIRIMIA.Models.MonitorizedUser
+@using System.Globalization
+@using Newtonsoft.Json.Linq
+@using Newtonsoft.Json
+@using System.Collections.Generic
+@{
+    Layout = null;
+     @*var websitesJson = ViewBag.websites as string;
+    dynamic websites = Newtonsoft.Json.JsonConvert.DeserializeObject(websitesJson);*@
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <style>
+        body {
+            background-image: url('/images/background0.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+
+        h4 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+        }
+        @*
+        .btn-back {
+            margin-top: 20px;
+            display: inline-block;
+        }*@
+    </style>
+</head>
+<body>
+    <a asp-action="Index" class="btn btn-back btn-secondary">Back to My Users</a>
+    <div class="container">
+        <form asp-action="PDF" method="post">
+            <h2>Report Details</h2>
+            <hr />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Date and time of the report:</h4>
+                    <p>@DateTime.Now</p>
+                    <br>
+                    <h4>Name:</h4>
+                    <p>@ViewBag.name</p>
+                    <br>
+                    <h4>Username:</h4>
+                    <p>@Model.Username</p>
+                    <br>
+                    <h4>Number of followers:</h4>
+                    <p>@ViewBag.followersCount</p>
+                    <br>
+                    @if (!string.IsNullOrEmpty(ViewBag.location))
+                    {
+                        <h4>Public location:</h4>
+                        <p>@ViewBag.location</p>
+                    }
+                </div>
+
+                <div class="col-md-6">
+                    <h4>Statistics:</h4>
+                    <ul>
+                        <li>Number of Tweets Posted: @ViewBag.tweetsCount</li>
+                        <li>Number of Predictions Made: @ViewBag.allpredictions</li>
+                        <li>Number of All Text/Tweets Predicted: @ViewBag.TextAllPredictions</li>
+                        <li>Number of All Memes/Images Predicted: @ViewBag.MemeAllPredictions</li>
+                        <li>Number of All URLs Predicted: @ViewBag.URLallpredictions</li>
+                    </ul>
+                    <br>
+                    <h4>Percentage of malicious content found:</h4>
+                    <p>@ViewBag.procentageMalicious%</p>
+                    <br>
+                    <h4>Where:</h4>
+                    <ul>
+                        <li>@ViewBag.procentageMALmemes% is for hateful memes/images</li>
+                        <li>@ViewBag.procentageMALurl% is for malicious URLs</li>
+                        <li>@ViewBag.procentageMALtext% is for hateful tweets/comments</li>
+                    </ul>
+                </div>
+            </div>
+
+        <input type="hidden" name="name" value="@ViewBag.name" />
+        <input type="hidden" name="allpredictions" value="@ViewBag.allpredictions" />
+        <input type="hidden" name="followersCount" value="@ViewBag.followersCount" />
+        <input type="hidden" name="tweetsCount" value="@ViewBag.tweetsCount" />
+        <input type="hidden" name="procentageMalicious" value="@ViewBag.procentageMalicious" />
+        <input type="hidden" name="procentageMALmemes" value="@ViewBag.procentageMALmemes" />
+        <input type="hidden" name="procentageMALurl" value="@ViewBag.procentageMALurl" />
+        <input type="hidden" name="procentageMALtext" value="@ViewBag.procentageMALtext" />
+        <input type="hidden" name="username" value="@Model.Username" />
+        <input type="hidden" name="MonitorizationID" value="@Model.MonitorizationID" />
+
+            <button type="submit" style="background-color: palegreen; color: black; padding: 10px 20px; border: 3px solid #ccc; border-radius: 5px; cursor: pointer; font-size: 20px;">Download PDF Report</button>
+            @*<a asp-action="Index" class="btn btn-back btn-secondary">Back to My Monitorized Users</a>*@
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+
+    
+</head>
+<body>
+    <form asp-action="PDF" method="post">
+       
+        <p>
+            Date and time of the report: @DateTime.Now
+        </p>
+        <p>
+            Name : @ViewBag.name </p>
+       
+        <p>   Username : @Model.Username</p> 
+          <p>  Number of followers: @ViewBag.followersCount</p> 
+          @if (!string.IsNullOrEmpty(ViewBag.location))
+        {
+            <p>Public location: @ViewBag.location</p>
+        } 
+         <p>  Number of tweets posted: @ViewBag.tweetsCount</p> 
+        <p> Number of predictions made: @ViewBag.allpredictions</p>
+        <p> Number of all text/tweets predicted: @ViewBag.TextAllPredictions</p>
+        <p>
+            Number of all memes/images predicted: @ViewBag.MemeAllPredictions</p>
+        <p>Number of all URLs predicted: @ViewBag.URLallpredictions</p>
+
+        <p>Percentage of malicious content found: @ViewBag.procentageMalicious%</p>
+        <p>Where: </p>
+        <p>       @ViewBag.procentageMALmemes% is for hateful memes/images</p>
+        <p>       @ViewBag.procentageMALurl% is for malicious URLs </p>
+        <p>       @ViewBag.procentageMALtext% is for hateful tweets/comments </p>
+
+        
+
+
+        <input type="hidden" name="name" value="@ViewBag.name" />
+        
+        <input type="hidden" name="allpredictions" value="@ViewBag.allpredictions" />
+        <input type="hidden" name="followersCount" value="@ViewBag.followersCount" />
+        <input type="hidden" name="tweetsCount" value="@ViewBag.tweetsCount" />
+        <input type="hidden" name="procentageMalicious" value="@ViewBag.procentageMalicious" />
+        <input type="hidden" name="procentageMALmemes" value="@ViewBag.procentageMALmemes" />
+        <input type="hidden" name="procentageMALurl" value="@ViewBag.procentageMALurl" />
+        <input type="hidden" name="procentageMALtext" value="@ViewBag.procentageMALtext" />
+        
+        <input type="hidden" name="username" value="@Model.Username" />
+       <input type="hidden" name="MonitorizationID" value="@Model.MonitorizationID" />
+        <button type="submit">Download PDF report !</button>
+        <p><a asp-action="Index" class="btn btn-secondary">Back to My Monitorized Users</a></p>
+    </form>
+</body>
+</html> *@
